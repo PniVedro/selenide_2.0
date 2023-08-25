@@ -8,8 +8,8 @@ import static com.codeborne.selenide.Selenide.open;
 
 
 public class CardTest {
-    private String generateDate(int addDays, String pattern) {
-        return LocalDate.now().plusDays(addDays).format(DateTimeFormatter.ofPattern(pattern));
+    private String generateDate() {
+        return LocalDate.now().plusDays(3).format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
     }
 
 
@@ -18,7 +18,7 @@ public class CardTest {
         open("http://localhost:9999");
 
         $("[data-test-id=city] input").setValue("Москва");
-        String currentDate = generateDate(3, "dd.MM.yyyy");
+        String currentDate = generateDate();
         $("[data-test-id=date] input").sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.DELETE);
         $("[data-test-id=date] input").sendKeys(currentDate);
 
